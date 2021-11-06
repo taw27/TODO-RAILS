@@ -1,9 +1,17 @@
-<h1> Todos</h1>
-
-<ul>
-<% @todos.each do |todo| %>
-    <li>
-        <%= todo.todo%>
-    </li>
-<% end %>
-</ul>
+<main class="container pt-5">
+    <h1> Todos</h1>
+    <%= form_with class: "mt-3", model: @todo do |form| %>
+        <div class="d-flex w-50">
+            <%= form.text_field :todo, placeholder: "New Todo", class: "form-control me-2" %>
+            <%= form.submit "Add Todo", class:"btn btn-primary" %>
+        </div>
+    <% end %>
+    
+    <ul class="list-group list-group-flush mt-3 w-50">
+    <% @todos.each do |todo| %>
+        <li class="list-group-item">
+            <%= todo.todo%>
+        </li>
+    <% end %>
+    </ul>
+</main>

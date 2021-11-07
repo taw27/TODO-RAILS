@@ -12,6 +12,16 @@ class TodosController < ApplicationController
     redirect_to action: 'index'
   end
 
+  def update
+    @todo = Todo.find(params[:id])
+
+    @todo.status = params[:status]
+
+    @todo.save
+
+    redirect_to action: 'index'
+  end
+
   private
 
   def todo_params

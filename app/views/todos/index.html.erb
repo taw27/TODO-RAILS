@@ -11,6 +11,11 @@
     <% @todos.each do |todo| %>
         <li class="list-group-item">
             <%= todo.todo%>
+            <% if todo.pending? %>
+                <%= button_to "Complete", todo_path(todo.id), method: :put, params: { status: "completed"} %>
+            <% else%>
+                <%= button_to "Uncheck", todo_path(todo.id), method: :put, params: { status: "pending"} %>
+            <% end %>
         </li>
     <% end %>
     </ul>

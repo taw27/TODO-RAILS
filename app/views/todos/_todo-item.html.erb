@@ -1,0 +1,9 @@
+<li class="list-group-item d-flex w-50 pe-0">
+            <span class="w-100 me-2 <%= 'text-muted completed' unless todo.pending? %>"> <%= todo.todo%> </span>
+            <% if todo.pending? %>
+                <%= button_to "Complete", todo_path(todo.id), method: :put, params: { status: "completed"}, class: "btn btn-outline-success" %>
+            <% else%>
+                <%= button_to "Uncheck", todo_path(todo.id), method: :put, params: { status: "pending"}, class: "btn btn-outline-secondary" %>
+            <% end %>
+            <%= button_to "Delete", todo_path(todo.id), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-outline-danger ms-1" %>
+</li>

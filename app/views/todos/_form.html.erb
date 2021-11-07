@@ -1,0 +1,6 @@
+<%= form_with class: "mt-3", model: todo do |form| %>
+        <div class="d-flex w-50">
+            <%= form.text_field :todo, placeholder: "New Todo....", class: "form-control me-2" %>
+            <%= form.submit "Add Todo", class:"btn btn-primary" %>
+        </div>
+<% end %>

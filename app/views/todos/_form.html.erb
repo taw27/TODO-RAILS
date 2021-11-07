@@ -1,6 +1,14 @@
 <%= form_with class: "mt-3", model: todo do |form| %>
         <div class="d-flex w-50">
-            <%= form.text_field :todo, placeholder: "New Todo....", class: "form-control me-2" %>
-            <%= form.submit "Add Todo", class:"btn btn-primary" %>
+            <div class="w-100 me-2">
+                <%= form.text_field :todo, placeholder: "New Todo....", class: "form-control w-100 #{'is-invalid' unless todo.errors.full_messages_for(:todo).empty?}" %>
+                <% todo.errors.full_messages_for(:todo).each do |message|%>
+                    <div class="invalid-feedback"> <%=message%> </div>
+                <%end%>
+            </div>
+            <div>
+                <%= form.submit "Add Todo", class:"btn btn-primary flex-grow-0" %>
+            </div>
         </div>
 <% end %>
+       

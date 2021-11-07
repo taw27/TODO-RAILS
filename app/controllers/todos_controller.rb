@@ -7,9 +7,12 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.create(todo_params)
 
-    @todo.save
-
-    redirect_to action: 'index'
+    if @todo.save
+      redirect_to action: 'index'
+    else
+      @todos = Todo.order(status: :desc)
+      render :index
+    end
   end
 
   def update

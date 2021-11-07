@@ -1,7 +1,7 @@
 class Todo < ApplicationRecord
   VALID_STATUSES = %w[pending completed]
 
-  validates :todo, presence: true, length: { minimum: 1 }
+  validates :todo, presence: true
   validates :status, inclusion: { in: VALID_STATUSES }
 
   after_initialize :set_defaults, unless: :persisted?

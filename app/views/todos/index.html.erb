@@ -2,19 +2,19 @@
     <h1> Todos</h1>
     <%= form_with class: "mt-3", model: @todo do |form| %>
         <div class="d-flex w-50">
-            <%= form.text_field :todo, placeholder: "New Todo", class: "form-control me-2" %>
+            <%= form.text_field :todo, placeholder: "New Todo....", class: "form-control me-2" %>
             <%= form.submit "Add Todo", class:"btn btn-primary" %>
         </div>
     <% end %>
     
-    <ul class="list-group list-group-flush mt-3 w-50">
+    <ul class="list-group list-group-flush mt-3 w-100">
     <% @todos.each do |todo| %>
-        <li class="list-group-item">
-            <%= todo.todo%>
+        <li class="list-group-item d-flex w-50 pe-0">
+            <span class="w-100 me-2 <%= 'text-muted completed' unless todo.pending? %>"> <%= todo.todo%> </span>
             <% if todo.pending? %>
-                <%= button_to "Complete", todo_path(todo.id), method: :put, params: { status: "completed"} %>
+                <%= button_to "Complete", todo_path(todo.id), method: :put, params: { status: "completed"}, class: "btn btn-outline-success" %>
             <% else%>
-                <%= button_to "Uncheck", todo_path(todo.id), method: :put, params: { status: "pending"} %>
+                <%= button_to "Uncheck", todo_path(todo.id), method: :put, params: { status: "pending"}, class: "btn btn-outline-danger" %>
             <% end %>
         </li>
     <% end %>
